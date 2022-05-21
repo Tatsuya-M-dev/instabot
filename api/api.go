@@ -9,12 +9,12 @@ type TweetData struct {
 	text string
 }
 
-func tweet(text string) error {
+func Tweet(text string) error {
 	return nil
 }
 
 //get new post id
-func checkInstagram(instagramId string) ([]string, error) {
+func CheckInstagram(instagramId string) ([]string, error) {
 	// publish instagram API
 
 	// if no new post
@@ -26,15 +26,15 @@ func checkInstagram(instagramId string) ([]string, error) {
 }
 
 type InstagramPostData struct {
-	postId   string
-	text     string
-	createAt time.Time
+	PostId   string
+	Text     string
+	CreateAt time.Time
 }
 
-func getPostData(postId string) {
-
+func GetPostData(postId string) (*InstagramPostData, error) {
+	return &InstagramPostData{}, nil
 }
 
-func savePostData(data InstagramPostData) error {
+func SavePostData(data *InstagramPostData) error {
 	return nil
 }

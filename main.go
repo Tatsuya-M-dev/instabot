@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./api"
+)
 
 func main() {
 	fmt.Println("Hello world!")
@@ -31,6 +35,22 @@ func getInstagramAccounts() ([]string, error) {
 }
 
 func notifyTweet(instagramId string) error {
+	postIdArray, err := api.CheckInstagram(instagramId)
+	if err != nil {
+		return fmt.Errorf("failed to check instagram: %v", err)
+	}
+	for _, postId := range postIdArray {
+		data, err := api.GetPostData(postId)
+		if err != nil {
+			return fmt.Errorf("failed to get post data %v", err)
+		}
+		if err := api.Tweet(data.Text); err != nil {
+			return fmt.Errorf("failed to tweet %v", err)
+		}
+		if err := api.SavePostData(data); err != nil {
+			return fmt.Errorf("failed to save post data")
+		}
+	}
 	fmt.Printf("no implemention")
 	return nil
 }
