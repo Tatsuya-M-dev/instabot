@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 
-	"./api"
+	"example.com/instabot/api"
 )
 
 func main() {
 	fmt.Println("Hello world!")
-	if err := scrape(); err != nil {
-		fmt.Printf("error %v", err)
-	}
+	api.Tweet("杏樹……")
+	// if err := scrape(); err != nil {
+	// 	fmt.Printf("error %v", err)
+	// }
 
 }
 
